@@ -1,5 +1,6 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loader from './Loader';
+import EverythingCard from './EverythingCard';
 
 function News() {
   const [data, setData] = useState([]);
@@ -33,12 +34,11 @@ function News() {
           setTotalResults(myJson.data.totalResults);
           setData(myJson.data.articles);
         } else {
-          setError(myJson.message || 'An error occurred');
+          setError('Failed to fetch data');
         }
       })
       .catch(error => {
-        console.error('Fetch error:', error);
-        setError('Failed to fetch news. Please try again later.');
+        setError(error.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -46,31 +46,41 @@ function News() {
   }, [page]);
 
   return (
-    <>
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
-      <div className='my-10 cards grid lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3 '>
-        {!isLoading ? data.map((element, index) => (
+    <div>
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        data.map((article, index) => (
           <EverythingCard
-            title={element.title}
-            description={element.description}
-            imgUrl={element.urlToImage}
-            publishedAt={element.publishedAt}
-            url={element.url}
-            author={element.author}
-            source={element.source.name}
             key={index}
+            countryName="USA"
+            countryLink="https://example.com" // Replace with the actual link
+            title={article.title}
+            imgUrl={article.urlToImage}
+            description={article.description}
+            url={article.url}
+            source={article.source.name}
+            author={article.author}
+            publishedAt={article.publishedAt}
+            imageUrlLeft={article.urlToImage}
+            imageLeftTitle={article.title}
+            memberIcon={<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />}
+            memberText="Member"
+            cardTitle={article.title}
+            cardDescription={article.description}
+            authorImage={article.urlToImage}
+            authorName={article.author}
+            publishedDate={article.publishedAt}
           />
-        )) : <Loader />}
-      </div>
-      {!isLoading && data.length > 0 && (
-        <div className="pagination flex justify-center gap-14 my-10 items-center">
-          <button disabled={page <= 1} className='pagination-btn text-center' onClick={handlePrev}>&larr; Prev</button>
-          <p className='font-semibold opacity-80'>{page} of {Math.ceil(totalResults / pageSize)}</p>
-          <button className='pagination-btn text-center' disabled={page >= Math.ceil(totalResults / pageSize)} onClick={handleNext}>Next &rarr;</button>
-        </div>
+        ))
       )}
-    </>
+      <div>
+        <button onClick={handlePrev} disabled={page <= 1}>Previous</button>
+        <button onClick={handleNext} disabled={page * pageSize >= totalResults}>Next</button>
+      </div>
+    </div>
   );
 }
 

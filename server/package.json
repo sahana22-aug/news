@@ -1,18 +1,19 @@
 {
-  "name": "server",
+  "name": "your-project-name",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "vite",
+    "build": "vite build",
+    "test": "your-test-command-here"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "axios": "^1.7.9",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "vite": "^2.6.4",
+    "tailwindcss": "^2.2.19",
+    "autoprefixer": "^10.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.0"
   }
 }

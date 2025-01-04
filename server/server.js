@@ -58,6 +58,7 @@ app.get("/top-headlines", (req, res) => {
 });
 
 // Country News
+app.options("/country/:iso",cors());
 app.get("/country/:iso", (req, res) => {
     let pageSize = parseInt(req.query.pageSize) || 80;
     let page = parseInt(req.query.page) || 1;

@@ -12,7 +12,7 @@
     --btn-background: #5f99be;
     --search-background: #000;
     --c: #2dd9fe;
-    --hover_bg_change: backdrop-filter:6px;
+    --hover_bg_change: backdrop-filter: blur(6px); /* Corrected backdrop-filter syntax */
 }
 
 .dark-theme {
@@ -26,11 +26,11 @@
     --search-background: #18181b;
 }
 
-*
-{
-    color:var(--txt);
+* {
+    color: var(--txt);
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 .container {
-    width: 100% !important;
+    width: 100% !important; /* Ensure this is needed, otherwise avoid !important */
 }
 
 nav {
@@ -57,7 +57,8 @@ nav {
 }
 
 nav ul {
-    min-width: 378px;
+    /* Consider removing this, as it could cause layout issues on smaller screens */
+    min-width: 378px; 
 }
 
 .dropdown-li {
@@ -123,7 +124,6 @@ ul li ul li a:hover {
     height: 30px;
     width: 30px;
 }
-
 .ham-burger {
     display: none;
     z-index: 100;
@@ -173,8 +173,8 @@ ul li ul li a:hover {
     align-items: center;
 }
 
-.fa-moon {color: #f1c40f;}
-.fa-sun {color: #f39c12;}
+.fa-moon { color: #f1c40f; }
+.fa-sun { color: #f39c12; }
 
 .checkbox-label .ball {
     background-color: #fff;
@@ -190,7 +190,6 @@ ul li ul li a:hover {
 .checkbox:checked + .checkbox-label .ball {
     transform: translateX(24px);
 }
-
 .search-box {
     background: var(--primary);
     height: 50px;
@@ -271,7 +270,7 @@ footer {
     color: var(--heading);
     background: radial-gradient(farthest-side, currentColor calc(100% - 6px), #0000 calc(100% - 5px) 0);
     -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 13px), #000 calc(100% - 12px));
-    mask: radial-gradient(farthest-side, #0000 calc(100% - 13px), #000 calc(100% - 12px)); /* Added standard mask */
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 13px), #000 calc(100% - 12px));
     border-radius: 50%;
     animation: l19 2s infinite linear;
 }
@@ -294,8 +293,6 @@ footer {
 @keyframes l19 { 
     100% { transform: rotate(1turn) }
 }
-
-/* Responsive styles */
 @media (max-width: 1024px) {
     .cards {
         place-items: center;
@@ -345,6 +342,10 @@ footer {
 
     .everything-card {
         width: 350px;
+        display: flex;
+        flex-direction: column;
+    align-items: center;
+
     }
 }
 
@@ -358,3 +359,33 @@ img {
     max-width: 100%;
     height: auto;
 }
+.everything-card {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .country-name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .everything-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .everything-card-img img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  @media (min-width: 1024px) {
+    .everything-card-content {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
