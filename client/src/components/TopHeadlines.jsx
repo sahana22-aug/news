@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 import EverythingCard from './EverythingCard';
-import CountryDropdown from './Countrydropdown';
 
 function TopHeadlines() {
   const params = useParams();

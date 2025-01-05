@@ -22,7 +22,7 @@ function News() {
   useEffect(() => {
     setIsLoading(true);
     setError(null);
-    fetch(`https://news-aggregator-dusky.vercel.app/all-news?page=${page}&pageSize=${pageSize}`)
+    fetch(`http://localhost:3000/all-news?page=${page}&pageSize=${pageSize}`)  // Changed to http:// if you're using local server
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -56,7 +56,7 @@ function News() {
           <EverythingCard
             key={index}
             countryName="USA"
-            countryLink="https://example.com" // Replace with the actual link
+            countryLink={article.source.url || "https://localhost:3000"}  // Make sure the link points to the article source
             title={article.title}
             imgUrl={article.urlToImage}
             description={article.description}
